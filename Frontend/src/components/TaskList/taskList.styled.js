@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const StyledTaskList = styled.div`
   display: flex;
   flex-direction: column-reverse;
- 
+  max-height: 100%;
+  overflow-y: auto;
+
   .task {
     display: flex;
     flex-direction: row;
@@ -14,6 +16,16 @@ export const StyledTaskList = styled.div`
     padding: 0.7rem 1rem;
     background-color: rgba(0, 0, 0, 0.75);
     color: white;
+    
+  }
+
+  h1 {
+    width: 35%;
+  }
+
+  .time {
+    width: 35%;
+    font-size: 1.2rem;
   }
 
   .checked,
@@ -55,24 +67,8 @@ export const StyledTaskList = styled.div`
     justify-content: center;
     align-items: center;
 
-    p {
-      font-size: 2.6rem;
-      font-weight: 800;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
     img {
-      margin-top: 4rem;
       height: 25rem;
     }
-  }
-
-  h1 {
-    width: 35%;
-  }
-
-  .time {
-    width: 35%;
-    font-size: 1.2rem;
   }
 `;
