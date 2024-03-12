@@ -1,18 +1,19 @@
 import styled from "styled-components";
 
 export const StyledCreateTask = styled.div`
-  border: 1px solid green;
+  background-color: rgba(0, 0, 0, 0.75);
   padding: 1rem 0.3rem;
   margin-top: 1rem;
   max-height: 67%;
   min-height: 67%;
+  color: white;
 
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    border: 1px solid black;
+
     width: 60%;
     margin: 1rem auto;
   }
@@ -25,8 +26,9 @@ export const StyledCreateTask = styled.div`
   p {
     margin: 1rem 0;
     border: 1px solid black;
-    padding: 0.3rem;
+    padding: 0.4rem 0.7rem;
     cursor: pointer;
+    background-color: rgba(35, 35, 35, 0.75);
   }
 
   input {
@@ -40,6 +42,14 @@ export const StyledCreateTask = styled.div`
     border: none;
     cursor: pointer;
     margin-top: 1rem;
+    background-color: orange;
+    color: aliceblue;
+    font-size: 1rem;
+    font-weight: 550;
+  }
+
+  button:hover {
+    background-color: rgb(224, 154, 23);
   }
 
   ul {
@@ -56,10 +66,34 @@ export const StyledCreateTask = styled.div`
 
   li {
     list-style: none;
-    border: 1px solid grey;
+    border: 1px solid orange;
     padding: 0.3rem;
     margin: 0.3rem;
     word-wrap: break-word;
     max-width: 95%;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  li:hover {
+    background-color: grey;
+  }
+
+  //scroll
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2c2c2c;
   }
 `;

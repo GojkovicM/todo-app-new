@@ -48,9 +48,9 @@ function LoginForm() {
           required
         />
         <button>Login</button>
-        <p>{message}</p>
+        <p className="message">{message}</p>
       </form>
-      <p onClick={signUpHandler}>SignUp</p>
+      <p onClick={signUpHandler} className="sign-up">SignUp</p>
     </StyledLoginForm>
   );
 }

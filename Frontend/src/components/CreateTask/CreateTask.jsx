@@ -12,7 +12,7 @@ function CreateTask() {
     fetchCreateTask,
     handleTaskItems,
     taskItems,
-    deleteTaskItems,
+    
     clearTaskItems,
   } = useContext(ToDoContext);
 
@@ -42,6 +42,10 @@ function CreateTask() {
   const handleButtonClick = () => {
     handleTaskItems(descriptionInputRef.current.value);
     descriptionInputRef.current.value = "";
+  };
+
+  const deleteTaskItems = (item) => {
+    clearTaskItems((prevItems) => prevItems.filter((task) => task !== item));
   };
 
   return (

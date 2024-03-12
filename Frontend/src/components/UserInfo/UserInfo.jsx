@@ -11,7 +11,7 @@ function UserInfo() {
 
   const handleChangeUser = () => {
      clearUserData();
-     localStorage.clear("username");
+     localStorage.removeItem("username");
      navigate("/")
      
   }

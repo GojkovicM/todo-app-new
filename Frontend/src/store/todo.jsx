@@ -1,5 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import { createTask, deleteTask, getTask, taskSolved, userLogin, userRegister } from "../api/service";
+import {
+  createTask,
+  deleteTask,
+  getTask,
+  taskSolved,
+  userLogin,
+  userRegister,
+} from "../api/service";
 
 export const ToDoContext = createContext({
   toggleForms: () => {},
@@ -15,21 +22,22 @@ export const ToDoContext = createContext({
   taskItems: [],
   tasks: [],
   fetchDeleteTask: () => {},
-  deleteTaskItems: () => {},
   clearTaskItems: () => {},
   fetchTaskSolved: () => {},
+  modalData: {},
+  toggleModal: false,
+  closeModal: () => {},
+  updateItemStatus: () => {},
 });
 
 const ToDoHandler = ({ children }) => {
   const [toggleForm, setToggleForm] = useState(false);
   const [message, setMessage] = useState("");
   const [userData, setUserData] = useState();
-  const [taskItems, setTaskItems] = useState([])
-  const [tasks, setTasks] = useState([])
-  console.log(tasks);
-  
- 
- 
+  const [taskItems, setTaskItems] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [modalData, setModalData] = useState();
+  const [toggleModal, setToggleModal] = useState(false);
 
   const fetchUserLogin = async (username) => {
     try {
@@ -43,8 +51,7 @@ const ToDoHandler = ({ children }) => {
         const data = await user.json();
         setUserData(data);
         localStorage.setItem("username", data.username);
-        fetchGetTask(data)
-        
+        fetchGetTask(data);
       }
     } catch (error) {
       console.log(error);
@@ -68,48 +75,75 @@ const ToDoHandler = ({ children }) => {
   };
 
   const fetchCreateTask = async (task) => {
-    try{
+    try {
       await createTask(task);
-      fetchGetTask(userData)
-    }catch(error){
+      fetchGetTask(userData);
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const fetchGetTask = async (userData) => {
-    try{
-      const res = await getTask(userData.userID)
+    try {
+      const res = await getTask(userData.userID);
       const data = await res.json();
-      setTasks(data)
-      
-    }catch(error){
+
+      setTasks(data);
+    } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   const fetchDeleteTask = async (id) => {
-    try{
-         await deleteTask(id)
-         fetchGetTask(userData)
-    }catch(error) {
+    try {
+      await deleteTask(id);
+      fetchGetTask(userData);
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  const fetchTaskSolved = async (id, index) => {
-    try{
-      const finished = tasks[index];
+  const fetchTaskSolved = async (id, task) => {
+    try {
+      const finished = task;
       finished.done = true;
 
       await taskSolved(id, finished);
-           
-      
-    }catch(error) {
+      fetchGetTask(userData);
+
+      const updatedItems = tasks.find((task) => task.taskID === id);
+
+      setModalData(updatedItems);
+    } catch (error) {
       console.log(error);
     }
-   
-  }
+  };
+
+  const fetchItemSolved = async (id, updatedTaskItem) => {
+    try {
+      await taskSolved(id, updatedTaskItem);
+      fetchGetTask(userData);
+
+      const updatedItems = tasks.find((task) => task.taskID === id);
+      setModalData(updatedItems);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateItemStatus = (id, itemIndex) => {
+    const updatedTaskItem = tasks.find((task) => task.taskID === id);
+    updatedTaskItem.description[itemIndex].status =
+      !updatedTaskItem.description[itemIndex].status;
+
+    if (updatedTaskItem.description[itemIndex].status) {
+      const itemSolved = updatedTaskItem.description[itemIndex];
+      updatedTaskItem.description.splice(itemIndex, 1);
+      updatedTaskItem.description.push(itemSolved);
+    }
+
+    fetchItemSolved(id, updatedTaskItem);
+  };
 
   const handleTaskItems = (item) => {
     if (item) {
@@ -118,19 +152,17 @@ const ToDoHandler = ({ children }) => {
     }
   };
 
-  const deleteTaskItems = (item) => {
-    setTaskItems((prevItems) => prevItems.filter((task) => task !== item));
+  const modalHandler = (data) => {
+    setModalData(data);
+    setToggleModal(true);
   };
 
-useEffect(() => {
-  const getUser = localStorage.getItem("username")
-  if(getUser !== null){
-    fetchUserLogin({username: getUser})
-    
-  }
-  
-  
-}, [])
+  useEffect(() => {
+    const getUser = localStorage.getItem("username");
+    if (getUser !== null) {
+      fetchUserLogin({ username: getUser });
+    }
+  }, []);
 
   return (
     <ToDoContext.Provider
@@ -148,9 +180,13 @@ useEffect(() => {
         taskItems,
         tasks,
         fetchDeleteTask,
-        deleteTaskItems,
         clearTaskItems: setTaskItems,
         fetchTaskSolved,
+        modalData,
+        toggleModal,
+        closeModal: setToggleModal,
+        modalHandler,
+        updateItemStatus,
       }}
     >
       {children}
