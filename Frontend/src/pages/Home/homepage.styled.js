@@ -22,5 +22,7 @@ export const StyledHomePage = styled.div`
   .right-side {
     width: 65%;
     padding: 1.5rem;
+    overflow-y: auto;
+    height: 94%;
   }
 `;

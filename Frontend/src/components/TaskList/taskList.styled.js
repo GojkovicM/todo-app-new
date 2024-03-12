@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledTaskList = styled.div`
   display: flex;
   flex-direction: column-reverse;
-
+ 
   .task {
     display: flex;
     flex-direction: row;

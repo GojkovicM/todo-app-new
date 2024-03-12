@@ -5,6 +5,7 @@ import checked from "../../assets/checked.svg";
 import inProgress from "../../assets/in-progress.svg";
 import noTasks from "../../assets/no-task.png"
 
+
 function TaskList() {
   const { tasks, fetchDeleteTask, fetchTaskSolved, modalHandler} =
     useContext(ToDoContext);
