@@ -8,7 +8,7 @@ export const StyledLoginForm = styled.div`
   width: 30%;
   padding: 2rem;
   margin-top: 10rem;
-  color: aliceblue;
+  color: white;
 
   label {
     font-size: 1.2rem;
