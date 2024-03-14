@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const StyledTaskList = styled.div`
   display: flex;
-  flex-direction: column-reverse;
-  max-height: 100%;
-  overflow-y: auto;
+  flex-direction: column;
 
   .task {
     display: flex;
@@ -16,7 +14,6 @@ export const StyledTaskList = styled.div`
     padding: 0.7rem 1rem;
     background-color: rgba(0, 0, 0, 0.75);
     color: white;
-    
   }
 
   h1 {
@@ -69,6 +66,22 @@ export const StyledTaskList = styled.div`
 
     img {
       height: 25rem;
+    }
+  }
+
+  .pagination {
+    position: absolute;
+    bottom: 4rem;
+    right: 50%;
+
+    .ant-pagination-prev button,
+    .ant-pagination-next button,
+    .ant-pagination-item a {
+      color: black;
+    }
+
+    .ant-pagination-item {
+      border: 1px solid black;
     }
   }
 `;

@@ -54,8 +54,16 @@ function SignUpForm() {
           required
         />
         <button>Create User</button>
-       
-        <p className={message === "Username already exists" ? "username-taken" : "username-free"}>{message}</p>
+
+        <p
+          className={
+            message === "Username already exists"
+              ? "username-taken"
+              : "username-free"
+          }
+        >
+          {message}
+        </p>
       </form>
       <p onClick={signInHandler}>SignIn</p>
     </StyledSignUpForm>

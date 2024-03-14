@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { ToDoContext } from "../../store/todo";
 
 function CreateTask() {
-  const taskInputref = useRef();
+  const taskInputRef = useRef();
   const descriptionInputRef = useRef();
 
   const {
@@ -20,14 +20,14 @@ function CreateTask() {
     event.preventDefault();
 
     const data = {
-      taskName: taskInputref.current.value,
+      taskName: taskInputRef.current.value,
       description: taskItems,
       userID: userData.userID,
     };
 
     fetchCreateTask(data);
 
-    taskInputref.current.value = "";
+    taskInputRef.current.value = "";
     clearTaskItems([]);
   };
 
@@ -53,7 +53,7 @@ function CreateTask() {
       <h1>Create Task:</h1>
       <form onSubmit={createTaskHandler}>
         <label htmlFor="taskName">Task</label>
-        <input type="text" id="taskName" ref={taskInputref} required />
+        <input type="text" id="taskName" ref={taskInputRef} required />
         <label htmlFor="description">Description</label>
 
         <input

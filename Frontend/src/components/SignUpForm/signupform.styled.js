@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledSignUpForm = styled.div`
   background-color: blue;
@@ -19,7 +19,7 @@ export const StyledSignUpForm = styled.div`
     margin: 2rem;
   }
 
-  button{
+  button {
     padding: 0.5rem 0.9rem;
     border-radius: 2rem;
     border: none;
@@ -34,12 +34,12 @@ export const StyledSignUpForm = styled.div`
     background-color: rgb(224, 154, 23);
   }
 
-  input{
+  input {
     margin: 1rem;
     padding: 0.2rem;
   }
 
-  p{
+  p {
     margin-top: 1rem;
   }
 
@@ -47,13 +47,13 @@ export const StyledSignUpForm = styled.div`
     font-size: 1.2rem;
   }
 
-  .username-taken{
+  .username-taken {
     color: red;
     font-size: 1.2rem;
   }
 
-  .username-free{
+  .username-free {
     color: green;
     font-size: 1.2rem;
   }
-`
+`;

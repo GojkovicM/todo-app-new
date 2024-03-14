@@ -5,17 +5,20 @@ import check from "../../assets/checked-modal.svg";
 import uncheck from "../../assets/uncheck.svg";
 
 function Modal() {
+  const {
+    closeModal,
+    modalData,
+    userData,
+    updateItemStatus,
+    fetchTaskSolved,
+    tasks,
+  } = useContext(ToDoContext);
 
-    const {
-       closeModal, modalData, userData, updateItemStatus, fetchTaskSolved, tasks
-      } = useContext(ToDoContext)
+  const updateModal = tasks.find((task) => task.taskID === modalData.taskID);
 
-      const updateModal = tasks.find((task) => task.taskID === modalData.taskID)
-     
-
-    return ( 
-        <StyledModal>
-              <div className="modal">
+  return (
+    <StyledModal>
+      <div className="modal">
         <button onClick={() => closeModal(false)} className="close-modal">
           X
         </button>
@@ -58,8 +61,7 @@ function Modal() {
           </div>
           <div className="status">
             <p>
-              Status:{" "}
-              {modalData.done ? <span>Done</span> : <span>Active</span>}
+              Status: {modalData.done ? <span>Done</span> : <span>Active</span>}
             </p>
 
             {modalData.description.some((item) => item.status === false) ? (
@@ -77,8 +79,8 @@ function Modal() {
           </div>
         </div>
       </div>
-        </StyledModal>
-     );
+    </StyledModal>
+  );
 }
 
 export default Modal;

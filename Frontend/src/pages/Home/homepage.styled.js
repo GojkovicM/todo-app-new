@@ -22,22 +22,7 @@ export const StyledHomePage = styled.div`
   .right-side {
     width: 65%;
     padding: 1.5rem;
-    height: 97%;
+    position: relative;
   }
 
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #2c2c2c;
-  }
-`;
+`

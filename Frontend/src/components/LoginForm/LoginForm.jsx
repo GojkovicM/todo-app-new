@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { StyledLoginForm } from "./loginform.styled";
+import { StyledLoginForm } from "./loginForm.styled";
 import { ToDoContext } from "../../store/todo";
 import { useNavigate } from "react-router-dom";
 
@@ -50,7 +50,9 @@ function LoginForm() {
         <button>Login</button>
         <p className="message">{message}</p>
       </form>
-      <p onClick={signUpHandler} className="sign-up">SignUp</p>
+      <p onClick={signUpHandler} className="sign-up">
+        SignUp
+      </p>
     </StyledLoginForm>
   );
 }
