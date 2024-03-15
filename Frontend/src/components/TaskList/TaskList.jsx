@@ -28,10 +28,11 @@ function TaskList() {
     const lastPage = Math.ceil(tasks.length / tasksPerPage);
     if (tasks.length > 0 && currentPage > lastPage) {
       setCurrentPage(lastPage);
-    } else if(tasks.length > 0 && lastPage > currentPage){
+    }
+    if(tasks.length > 0 && lastPage > currentPage){
       setCurrentPage(lastPage)
     }
-  }, [tasks, currentPage]);
+  }, [tasks.length]);
 
   if (tasks.length !== 0) {
     return (

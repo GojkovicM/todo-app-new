@@ -32,6 +32,8 @@ function LoginForm() {
   useEffect(() => {
     if (userData) {
       navigate("/HomePage");
+    } else {
+      navigate("/")
     }
   }, [userData]);
 
