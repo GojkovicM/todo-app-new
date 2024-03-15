@@ -9,6 +9,7 @@ export const StyledHomePage = styled.div`
     display: flex;
     flex-direction: row;
     height: calc(100vh - 3rem);
+    
   }
 
   .left-side {
@@ -24,5 +25,6 @@ export const StyledHomePage = styled.div`
     padding: 1.5rem;
     position: relative;
   }
+ 
 
 `

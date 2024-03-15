@@ -29,23 +29,20 @@ function TaskList() {
     if (tasks.length > 0 && currentPage > lastPage) {
       setCurrentPage(lastPage);
     }
-    if(tasks.length > 0 && lastPage > currentPage){
-      setCurrentPage(lastPage)
+    if (tasks.length > 0 && lastPage > currentPage) {
+      setCurrentPage(lastPage);
     }
   }, [tasks.length]);
 
   if (tasks.length !== 0) {
     return (
       <StyledTaskList>
-        <Pagination
-          className="pagination"
-          current={currentPage}
-          total={tasks.length}
-          pageSize={tasksPerPage}
-          onChange={paginate}
-        />
         {currentTasks.map((task, index) => (
-          <div className="task" onClick={() => modalHandler(task)}>
+          <div
+            className="task"
+            onClick={() => modalHandler(task)}
+            key={task.taskID}
+          >
             <h1>{task.taskName}</h1>
             <div className="time">
               <p>{new Date(task.createdAt).toLocaleDateString()}</p>
@@ -76,6 +73,13 @@ function TaskList() {
             )}
           </div>
         ))}
+        <Pagination
+          className="pagination"
+          current={currentPage}
+          total={tasks.length}
+          pageSize={tasksPerPage}
+          onChange={paginate}
+        />
       </StyledTaskList>
     );
   } else {
