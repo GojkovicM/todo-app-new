@@ -15,7 +15,7 @@ function LoginForm() {
     event.preventDefault();
 
     const username = {
-      username: usernameInputRef.current.value,
+      username: usernameInputRef.current.value
     };
 
     fetchUserLogin(username);

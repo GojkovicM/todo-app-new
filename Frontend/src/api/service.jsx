@@ -1,6 +1,9 @@
+const usersUrl = "http://localhost:5000/api/users"
+const tasksUrl = "http://localhost:5000/api/tasks"
+
 export const userLogin = async (username) => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/login", {
+      const res = await fetch(`${usersUrl}/login`, {
         method: "POST",
         body: JSON.stringify(username),
         headers: {
@@ -15,7 +18,7 @@ export const userLogin = async (username) => {
 
   export const userRegister = async (data) => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/register", {
+      const res = await fetch(`${usersUrl}/register`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -30,7 +33,7 @@ export const userLogin = async (username) => {
 
   export const createTask = async (data) => {
     try{
-      const res = await fetch("http://localhost:5000/api/tasks", {
+      const res = await fetch(`${tasksUrl}`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -47,7 +50,7 @@ export const userLogin = async (username) => {
 
   export const getTask = async (id) => {
     try{
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`);
+      const res = await fetch(`${tasksUrl}/${id}`);
       
       return res;
       
@@ -58,7 +61,7 @@ export const userLogin = async (username) => {
 
   export const deleteTask = async (id) => {
     try{
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const res = await fetch(`${tasksUrl}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +76,7 @@ export const userLogin = async (username) => {
 
   export const taskSolved = async (id, task) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const res = await fetch(`${tasksUrl}/${id}`, {
         method: "PUT",
         body: JSON.stringify(task),
         headers: {

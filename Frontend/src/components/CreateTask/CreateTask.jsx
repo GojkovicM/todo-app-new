@@ -12,7 +12,7 @@ function CreateTask() {
     fetchCreateTask,
     handleTaskItems,
     taskItems,
-    
+
     clearTaskItems,
   } = useContext(ToDoContext);
 
@@ -20,7 +20,9 @@ function CreateTask() {
     event.preventDefault();
 
     const data = {
-      taskName: taskInputRef.current.value,
+      taskName:
+        taskInputRef.current.value.charAt(0).toUpperCase() +
+        taskInputRef.current.value.slice(1),
       description: taskItems,
       userID: userData.userID,
     };
@@ -34,13 +36,19 @@ function CreateTask() {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      handleTaskItems(descriptionInputRef.current.value);
+      handleTaskItems(
+        descriptionInputRef.current.value.charAt(0).toUpperCase() +
+          descriptionInputRef.current.value.slice(1)
+      );
       descriptionInputRef.current.value = "";
     }
   };
 
   const handleButtonClick = () => {
-    handleTaskItems(descriptionInputRef.current.value);
+    handleTaskItems(
+      descriptionInputRef.current.value.charAt(0).toUpperCase() +
+        descriptionInputRef.current.value.slice(1)
+    );
     descriptionInputRef.current.value = "";
   };
 
@@ -59,7 +67,7 @@ function CreateTask() {
         <input
           type="text"
           ref={descriptionInputRef}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
         />
         <p onClick={handleButtonClick} className="items">
           Add Item

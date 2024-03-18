@@ -14,9 +14,14 @@ function SignUpForm() {
     event.preventDefault();
 
     const data = {
-      name: nameInputRef.current.value,
-      surname: surnameInputRef.current.value,
-      username: usernameInputRef.current.value,
+      name:
+        nameInputRef.current.value.charAt(0).toUpperCase() +
+        nameInputRef.current.value.slice(1),
+      surname:
+        surnameInputRef.current.value.charAt(0).toUpperCase() +
+        surnameInputRef.current.value.slice(1),
+      username:
+        usernameInputRef.current.value
     };
 
     fetchUserRegister(data);

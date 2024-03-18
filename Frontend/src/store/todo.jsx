@@ -27,6 +27,7 @@ export const ToDoContext = createContext({
   modalData: {},
   toggleModal: false,
   closeModal: () => {},
+  modalHandler: () => {},
   updateItemStatus: () => {},
 });
 
@@ -38,9 +39,6 @@ const ToDoHandler = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [modalData, setModalData] = useState();
   const [toggleModal, setToggleModal] = useState(false);
-
- 
- 
 
   const fetchUserLogin = async (username) => {
     try {
@@ -128,6 +126,7 @@ const ToDoHandler = ({ children }) => {
       fetchGetTask(userData);
 
       const updatedItems = tasks.find((task) => task.taskID === id);
+
       setModalData(updatedItems);
     } catch (error) {
       console.log(error);

@@ -32,12 +32,25 @@ function TaskList() {
     if (tasks.length > 0 && lastPage > currentPage) {
       setCurrentPage(lastPage);
     }
+    
   }, [tasks.length]);
+
+
+
+  const doneButtonHandler = (e, id, task) => {
+    e.stopPropagation();
+    fetchTaskSolved(id, task);
+  }
+
+  const deleteButtonHandler = (e, id) => {
+    e.stopPropagation();
+    fetchDeleteTask(id)
+  }
 
   if (tasks.length !== 0) {
     return (
       <StyledTaskList>
-        {currentTasks.map((task, index) => (
+        {currentTasks.map((task) => (
           <div
             className="task"
             onClick={() => modalHandler(task)}
@@ -49,19 +62,13 @@ function TaskList() {
               <p>{new Date(task.createdAt).toLocaleTimeString()}</p>
             </div>
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                fetchTaskSolved(task.taskID, task);
-              }}
+              onClick={(e) => doneButtonHandler(e, task.taskID, task)}
               className={task.done ? "task-done" : "task-active"}
             >
               Done
             </button>
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                fetchDeleteTask(task.taskID);
-              }}
+              onClick={(e) => deleteButtonHandler(e, task.taskID)}
               className="delete"
             >
               Delete
