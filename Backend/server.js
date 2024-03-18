@@ -1,23 +1,23 @@
-const express = require("express"); // allows you to create a web server in Node.js.
+const express = require("express");                                                         // allows you to create a web server in Node.js.
 const app = express();
 const userRoutes = require("./routes/users");
 const taskRoutes = require("./routes/tasks");
 const db = require("./db");
 
 // Middleware
-app.use(express.json()); //parse incoming requests with JSON payloads
+app.use(express.json());                                                                     //parse incoming requests with JSON payloads
 
 // Enable CORS
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");                        
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");                     //It allows requests from a specific origin (http://localhost:3000 in this case) and specifies the allowed HTTP methods and headers.
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
-db.sync() //don t forget to do this!
-  .then(() => {
+db.sync()                                                                                      //don t forget to do this!
+  .then(() => {                                                                               //This code synchronizes the database.
     console.log("Database synchronized");
   })
   .catch((err) => {

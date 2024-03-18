@@ -1,4 +1,5 @@
-const Task = require('../models/task');                                                    //Import the Task model, which represents the schema and interacts with the database for task-related operations.
+const Task = require('../models/task');                                  //Import the Task model, which represents the schema and interacts with the database for task-related operations.
+                                              
 
 exports.getTasksByUserId = async (req, res) => {
   const userId = req.params.userId;
@@ -25,6 +26,8 @@ exports.createTask = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
 
 exports.updateTask = async (req, res) => {
   const taskId = req.params.taskId;

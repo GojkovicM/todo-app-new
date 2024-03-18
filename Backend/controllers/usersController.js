@@ -1,4 +1,6 @@
 const User = require('../models/user');                                                 //Import the User model, which represents the schema and interacts with the database for user-related operations. 
+const Task = require('../models/task'); 
+
 
 exports.login = async (req, res) => {
   const { username } = req.body;
@@ -34,6 +36,35 @@ exports.register = async (req, res) => {
     return res.status(201).json({message: "User created successfully"});
   } catch (error) {
     console.error("Error registering user:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  const userID = req.params.userID;
+
+  try {
+    // Find the user
+    const user = await User.findByPk(userID);
+   
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Find all tasks associated with the user
+    const tasks = await Task.findAll({ where: { userID } });
+
+    // Delete each task associated with the user
+    for (let i = 0; i < tasks.length; i++) {
+      await tasks[i].destroy();
+    }
+
+    // delete the user
+    await user.destroy();
+
+    return res.status(204).send();
+  } catch (error) {
+    console.error("Error deleting user and associated tasks:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };

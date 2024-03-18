@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToDoContext } from "../../store/todo";
 
 function UserInfo() {
-  const { userData, clearUserData } = useContext(ToDoContext);
+  const { userData, clearUserData, fetchUserDelete, toggleUserModal } = useContext(ToDoContext);
 
   const navigate = useNavigate();
 
@@ -13,6 +13,8 @@ function UserInfo() {
     localStorage.removeItem("username");
     navigate("/");
   };
+
+ 
 
   
     return (
@@ -27,7 +29,8 @@ function UserInfo() {
         <p className="make-space">
           username: <span>{userData?.username}</span>
         </p>
-        <button onClick={handleChangeUser}>Change User</button>
+        <button onClick={handleChangeUser} className="change">Change User</button>
+        <button onClick={() => toggleUserModal(true)} className="delete">Delete User</button>
       </StyledUserInfo>
     );
   

@@ -6,6 +6,7 @@ import {
   taskSolved,
   userLogin,
   userRegister,
+  userDelete,
 } from "../api/service";
 
 export const ToDoContext = createContext({
@@ -29,6 +30,9 @@ export const ToDoContext = createContext({
   closeModal: () => {},
   modalHandler: () => {},
   updateItemStatus: () => {},
+  fetchUserDelete: () => {},
+  toggleUserModal: () => {},
+  toggleDeleteUserModal: false,
 });
 
 const ToDoHandler = ({ children }) => {
@@ -39,6 +43,7 @@ const ToDoHandler = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [modalData, setModalData] = useState();
   const [toggleModal, setToggleModal] = useState(false);
+  const [toggleDeleteUserModal, setToggleDeleteUserModal] = useState(false);
 
   const fetchUserLogin = async (username) => {
     try {
@@ -70,6 +75,14 @@ const ToDoHandler = ({ children }) => {
 
         setMessage(data.message);
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchUserDelete = async (id) => {
+    try {
+      await userDelete(id);
     } catch (error) {
       console.log(error);
     }
@@ -189,6 +202,9 @@ const ToDoHandler = ({ children }) => {
         closeModal: setToggleModal,
         modalHandler,
         updateItemStatus,
+        fetchUserDelete,
+        toggleUserModal: setToggleDeleteUserModal,
+        toggleDeleteUserModal,
       }}
     >
       {children}
