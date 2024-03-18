@@ -20,7 +20,7 @@ function DeleteModal() {
     <StyledDeleteModal>
       <div className="modal">
         <p>
-          Are you sure your want to delete you are account? All tasks will be
+          Are you sure you want to delete your account? All tasks will be
           lost!
         </p>
         <div className="buttons">
