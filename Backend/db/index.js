@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');                                                    //create a Sequelize instance, which represents the connection to your database.
 
 const sequelize = new Sequelize('postgres', 'postgres', '123', {
-  host: 'localhost',
+  host: 'db',
   dialect: 'postgres',
   port: 5432,
 });

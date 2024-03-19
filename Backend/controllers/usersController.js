@@ -51,10 +51,10 @@ exports.deleteUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Find all tasks associated with the user
+    // Find all tasks of that  user
     const tasks = await Task.findAll({ where: { userID } });
 
-    // Delete each task associated with the user
+    // Delete each task of that user
     for (let i = 0; i < tasks.length; i++) {
       await tasks[i].destroy();
     }
