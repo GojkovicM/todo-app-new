@@ -41,18 +41,18 @@ exports.register = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-  const userID = req.params.userID;
+  const userId = req.params.userId;
 
   try {
     // Find the user
-    const user = await User.findByPk(userID);
+    const user = await User.findByPk(userId);
    
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
     // Find all tasks of that  user
-    const tasks = await Task.findAll({ where: { userID } });
+    const tasks = await Task.findAll({ where: { userID: userId } });
 
     // Delete each task of that user
     for (let i = 0; i < tasks.length; i++) {
