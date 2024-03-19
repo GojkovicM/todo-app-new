@@ -33,6 +33,7 @@ export const ToDoContext = createContext({
   fetchUserDelete: () => {},
   toggleUserModal: () => {},
   toggleDeleteUserModal: false,
+  
 });
 
 const ToDoHandler = ({ children }) => {
@@ -205,6 +206,7 @@ const ToDoHandler = ({ children }) => {
         fetchUserDelete,
         toggleUserModal: setToggleDeleteUserModal,
         toggleDeleteUserModal,
+        
       }}
     >
       {children}
